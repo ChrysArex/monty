@@ -1,18 +1,21 @@
 #include "monty.h"
 /**
  * is_valide - determine whether a opcode is valide or not
- * @args: array containing the command and its arg
  * Return: 1 if it is validated, -1 if the cmd is wrong and 0 if args is empty
  */
-int is_valide()
+int is_valide(void)
 {
 	int i = 0;
 	int is_valide = -1;
-	char *availables[7] = {"push", "pall", "pint", "pop", "swap", "add", "nop"};
+	char *availables[11] = {
+		"push", "pall", "pint", "pop",
+		"swap", "add", "nop", "sub",
+		"div", "mul", "mod"
+	};
 
 	if (args[0] == NULL)
 		return (0);
-	for (; i < 7; i++)
+	for (; i < 11; i++)
 	{
 		if (strcmp(args[0], availables[i]) == 0)
 		{
@@ -44,11 +47,13 @@ int execute(stack_t **h, char *cmd, unsigned int n)
 {
 	char *cp_cmd = cmd;
 	int len = strlen(cp_cmd), validated;
-	instruction_t opcode[7] = {
+	instruction_t opcode[11] = {
 		{"push", &push}, {"pall", &pall},
 		{"pint", &pint}, {"pop", &pop},
 		{"swap", &swap}, {"add", &add},
-		{"nop", &nop}
+		{"nop", &nop}, {"sub", &_sub},
+		{"div", &_div}, {"mul", &_mul},
+		{"mod", &_mod}
 	};
 
 	for (; len >= 1; len--)
@@ -68,7 +73,7 @@ int execute(stack_t **h, char *cmd, unsigned int n)
 		fprintf(stderr, "L%d: unknown instruction %s\n", n, args[0]);
 		exit(EXIT_FAILURE);
 	}
-	for (validated = 0; validated < 7; validated++)
+	for (validated = 0; validated < 11; validated++)
 	{
 		if (!strcmp(args[0], (opcode[validated]).opcode))
 		{

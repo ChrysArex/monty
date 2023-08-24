@@ -36,7 +36,7 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 extern int line_number;
-int is_valide();
+int is_valide(void);
 int execute(stack_t **h, char *cmd, unsigned int n);
 void tokenise(char **args, char *cmd);
 void push(stack_t **stack, unsigned int line_number);
@@ -46,4 +46,8 @@ void pop(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
+void _sub(stack_t **stack, unsigned int line_number);
+void _div(stack_t **stack, unsigned int line_number);
+void _mul(stack_t **stack, unsigned int line_number);
+void _mod(stack_t **stack, unsigned int line_number);
 #endif
