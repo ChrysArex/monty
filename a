@@ -1,4 +1,5 @@
 push 16
+sub
 push 14
 push 12
 push 8
