@@ -12,8 +12,11 @@ void push(stack_t **stack, unsigned int line_number)
 
 	if (args[1] == NULL || atoi(args[1]) == 0)
 	{
-		fprintf(stderr, "L%u: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
+		if (strcmp(args[1], "0"))
+		{
+			fprintf(stderr, "L%u: usage: push integer\n", line_number);
+			exit(EXIT_FAILURE);
+		}
 	}
 	data = atoi(args[1]);
 	*stack = malloc(sizeof(stack_t));
